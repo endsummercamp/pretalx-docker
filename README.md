@@ -1,9 +1,5 @@
 # pretalx
 
-[![Build Status](https://drone.owncloud.com/api/badges/owncloud-ops/pretalx/status.svg)](https://drone.owncloud.com/owncloud-ops/pretalx/)
-[![Docker Hub](https://img.shields.io/badge/docker-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/owncloudops/pretalx)
-[![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/owncloudops/pretalx)
-
 Custom container image for the [pretalx](https://docs.pretalx.org/) conference management system.
 
 ## Ports
@@ -61,4 +57,8 @@ docker build -f Dockerfile -t pretalx:latest .
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/owncloud-ops/pretalx/blob/main/LICENSE) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/endsummercamp/pretalx-docker/blob/main/LICENSE) file for details.
+
+## Credits
+
+This repository has been forked from ownCloud's ops repository to fit our needs - see the [original repo](https://github.com/owncloud-ops/pretalx) for details.

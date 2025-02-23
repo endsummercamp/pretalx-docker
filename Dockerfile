@@ -1,25 +1,22 @@
-FROM python:3.11-slim@sha256:fc39d2e68b554c3f0a5cb8a776280c0b3d73b4c04b83dbade835e2a171ca27ef
+FROM python:3.11-slim
 
-LABEL maintainer="ownCloud DevOps <devops@owncloud.com>"
-LABEL org.opencontainers.image.authors="ownCloud DevOps <devops@owncloud.com>"
+LABEL maintainer="End Summer Camp NOC team <tapioco@endsummercamp.org>"
+LABEL org.opencontainers.image.authors="End Summer Camp NOC team <tapioco@endsummercamp.org>"
 LABEL org.opencontainers.image.title="Pretalx conference management system"
-LABEL org.opencontainers.image.url="https://github.com/owncloud-ops/pretalx"
-LABEL org.opencontainers.image.source="https://github.com/owncloud-ops/pretalx"
-LABEL org.opencontainers.image.documentation="https://github.com/owncloud-ops/pretalx"
+LABEL org.opencontainers.image.url="https://github.com/endsummercamp/pretalx-docker"
+LABEL org.opencontainers.image.source="https://github.com/endsummercamp/pretalx-docker"
+LABEL org.opencontainers.image.documentation="https://github.com/endsummercamp/pretalx-docker"
 
 ARG BUILD_VERSION
 ARG GOMPLATE_VERSION
 ARG WAIT_FOR_VERSION
-ARG CONTAINER_LIBRARY_VERSION
 
 # renovate: datasource=github-releases depName=pretalx/pretalx
-ENV PRETALX_VERSION="${BUILD_VERSION:-v2024.1.0}"
+ENV PRETALX_VERSION="${BUILD_VERSION:-v2024.3.1}"
 # renovate: datasource=github-releases depName=hairyhenderson/gomplate
-ENV GOMPLATE_VERSION="${GOMPLATE_VERSION:-v3.11.7}"
+ENV GOMPLATE_VERSION="${GOMPLATE_VERSION:-v4.3.0}"
 # renovate: datasource=github-releases depName=thegeeklab/wait-for
-ENV WAIT_FOR_VERSION="${WAIT_FOR_VERSION:-v0.4.2}"
-# renovate: datasource=github-releases depName=owncloud-ops/container-library
-ENV CONTAINER_LIBRARY_VERSION="${CONTAINER_LIBRARY_VERSION:-v0.1.0}"
+ENV WAIT_FOR_VERSION="${WAIT_FOR_VERSION:-v0.4.3}"
 
 ENV LANG=C.UTF-8
 ENV LANGUAGE=C.UTF-8
@@ -33,7 +30,6 @@ RUN addgroup --gid 1001 --system pretalx && \
         libmemcached-dev pkg-config build-essential npm nodejs locales && \
     curl -SsfL -o /usr/local/bin/gomplate "https://github.com/hairyhenderson/gomplate/releases/download/${GOMPLATE_VERSION}/gomplate_linux-amd64" && \
     curl -SsfL -o /usr/local/bin/wait-for "https://github.com/thegeeklab/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for" && \
-    curl -SsfL "https://github.com/owncloud-ops/container-library/releases/download/${CONTAINER_LIBRARY_VERSION}/container-library.tar.gz" | tar xz -C / && \
     chmod 755 /usr/local/bin/gomplate && \
     chmod 755 /usr/local/bin/wait-for && \
     dpkg-reconfigure locales && \

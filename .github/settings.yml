@@ -2,7 +2,6 @@
 repository:
   name: pretalx
   description: Custom container image for Pretalx
-  homepage: https://hub.docker.com/r/owncloudops/pretalx
   topics: oci, container, pretalx
 
   private: false
@@ -50,9 +49,5 @@ branches:
   - name: main
     protection:
       required_pull_request_reviews: null
-      required_status_checks:
-        strict: false
-        contexts:
-          - continuous-integration/drone/pr
       enforce_admins: null
       restrictions: null
