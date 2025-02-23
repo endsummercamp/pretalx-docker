@@ -1,0 +1,60 @@
+services:
+  pretalx:
+    image: ghcr.io/endsummercamp/pretalx-docker:latest
+    container_name: pretalx
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - db
+    ports:
+      - 8000:8000
+    environment:
+      # The PRETALX_ADMIN_* env vars can be removed after the account has been created
+      - "PRETALX_ADMIN_EMAIL=a-really@valid.email"
+      - "PRETALX_ADMIN_USERNAME=admin"
+      - "PRETALX_ADMIN_PASSWORD=ch4ng3-m3"
+      - "PRETALX_SITE_DEBUG=False"
+      - "PRETALX_SITE_URL=https://pretalx.yourcooldomain.tld"
+      - "PRETALX_DB_TYPE=postgresql"
+      - "PRETALX_DB_NAME=pretalx"
+      - "PRETALX_DB_USER=pretalx"
+      - "PRETALX_DB_PASS=yourcoolpostgrespassword"
+      - "PRETALX_DB_HOST=pretalx-db"
+      - "PRETALX_DB_PORT=5432"
+      - "PRETALX_MAIL_FROM=a-really@valid.email"
+      - "PRETALX_MAIL_HOST=mail.yourcooldomain.tld"
+      - "PRETALX_MAIL_PORT=587"
+      - "PRETALX_MAIL_USER=your-email-username"
+      - "PRETALX_MAIL_PASSWORD=fix-me-please"
+      - "PRETALX_MAIL_TLS=False"
+      - "PRETALX_MAIL_SSL=False"
+      - "PRETALX_REDIS_HOST=pretalx-redis"
+      - "PRETALX_LANGUAGE_CODE=en"
+      - "PRETALX_TIME_ZONE=UTC"
+      - "PRETALX_LOG_LEVEL=info"
+    volumes:
+      - ./pretalx-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "/usr/bin/healthcheck"]
+
+  db:
+    image: postgres:14
+    container_name: pretalx-db
+    restart: unless-stopped
+    volumes:
+      - ./pretalx-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: pretalx
+      POSTGRES_USER: pretalx
+      POSTGRES_PASSWORD: yourcoolpostgrespassword
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+
+  redis:
+    image: redis:latest
+    container_name: pretalx-redis
+    restart: unless-stopped
+    volumes:
+      - ./pretalx-redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping"]
