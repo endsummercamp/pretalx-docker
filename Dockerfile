@@ -43,12 +43,12 @@ RUN addgroup --gid 1001 --system pretalx && \
     pip install -e /pretalx && \
     pip install django-redis pylibmc mysqlclient psycopg2-binary celery[redis] && \
     pip install gunicorn && \
+    mv /pretalx/src/pretalx/static/vendored/fullcalendar/it.global.min.js /pretalx/src/pretalx/static/vendored/fullcalendar/it.js && \
     python -m pretalx makemigrations && \
     python -m pretalx migrate && \
     python -m pretalx rebuild && \
     chmod 750 /etc/pretalx && \
     chmod 750 /data && \
-    mv /pretalx/src/pretalx/static/vendored/fullcalendar/it.global.min.js /pretalx/src/pretalx/static/vendored/fullcalendar/it.js && \
     chown -R pretalx:pretalx /etc/pretalx /pretalx /data && \
     apt-get remove -y --purge curl build-essential npm nodejs && \
     apt-get clean all && \
