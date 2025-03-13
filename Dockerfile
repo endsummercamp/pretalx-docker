@@ -48,6 +48,7 @@ RUN addgroup --gid 1001 --system pretalx && \
     python -m pretalx rebuild && \
     chmod 750 /etc/pretalx && \
     chmod 750 /data && \
+    mv /pretalx/src/pretalx/static/vendored/fullcalendar/it.global.min.js /pretalx/src/pretalx/static/vendored/fullcalendar/it.js && \
     chown -R pretalx:pretalx /etc/pretalx /pretalx /data && \
     apt-get remove -y --purge curl build-essential npm nodejs && \
     apt-get clean all && \
