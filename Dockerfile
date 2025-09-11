@@ -43,7 +43,6 @@ RUN addgroup --gid 1001 --system pretalx && \
     pip install -e /pretalx && \
     pip install django-redis pylibmc mysqlclient psycopg2-binary celery[redis] && \
     pip install gunicorn && \
-    mv /pretalx/src/pretalx/static/vendored/fullcalendar/it.global.min.js /pretalx/src/pretalx/static/vendored/fullcalendar/it.js && \
     python -m pretalx makemigrations && \
     python -m pretalx migrate && \
     python -m pretalx rebuild && \
