@@ -12,9 +12,9 @@ ARG GOMPLATE_VERSION
 ARG WAIT_FOR_VERSION
 
 # renovate: datasource=github-releases depName=pretalx/pretalx
-ENV PRETALX_VERSION="${BUILD_VERSION:-v2025.1.0}"
+ENV PRETALX_VERSION="${BUILD_VERSION:-v2025.2.2}"
 # renovate: datasource=github-releases depName=hairyhenderson/gomplate
-ENV GOMPLATE_VERSION="${GOMPLATE_VERSION:-v4.3.3}"
+ENV GOMPLATE_VERSION="${GOMPLATE_VERSION:-v5.0.0}"
 # renovate: datasource=github-releases depName=thegeeklab/wait-for
 ENV WAIT_FOR_VERSION="${WAIT_FOR_VERSION:-v0.4.3}"
 
