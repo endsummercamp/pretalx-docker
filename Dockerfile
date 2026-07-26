@@ -16,7 +16,7 @@ ENV PRETALX_VERSION="${BUILD_VERSION:-v2026.1.2}"
 # renovate: datasource=github-releases depName=hairyhenderson/gomplate
 ENV GOMPLATE_VERSION="${GOMPLATE_VERSION:-v5.1.0}"
 # renovate: datasource=github-releases depName=thegeeklab/wait-for
-ENV WAIT_FOR_VERSION="${WAIT_FOR_VERSION:-v0.4.3}"
+ENV WAIT_FOR_VERSION="${WAIT_FOR_VERSION:-v0.4.4}"
 
 ENV LANG=C.UTF-8
 ENV LANGUAGE=C.UTF-8
