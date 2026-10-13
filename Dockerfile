@@ -1,4 +1,4 @@
-FROM python:3.14-slim
+FROM python:3.15-slim
 
 LABEL maintainer="End Summer Camp NOC team <tapioco@endsummercamp.org>"
 LABEL org.opencontainers.image.authors="End Summer Camp NOC team <tapioco@endsummercamp.org>"
